@@ -1,0 +1,11 @@
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    .books{
+        width: 300px;
+        height: 500px;
+        >.bPoster{
+            >img{width: 100%}
+        }
+    }
+}
