@@ -7,7 +7,7 @@ const insert = (state, action) => {
 	switch(action.type) {
 		case "main" : return action.d;
 		case "search" : return action.d;
-		case "more" : return [...action.d];
+		case "more" : return action.d;
 		default : return action.d;
 	}
 }
@@ -15,8 +15,19 @@ const insert = (state, action) => {
 function Context({ children }) {
 	const [data, dispatch] = useReducer(insert, []);
 	const [dData, setDData] = useState([]);
-	const [page, setPage] = useState("1");
-	const [srchInp, setSrchInp] = useState(null);
+	const [page, setPage] = useState(1);
+	const [srchInp, setSrchInp] = useState("");
+
+	// const dbtest = async () => {
+	// 	axios.get(`/api/test`)
+	// 	.then(res=>{
+	// 		console.log(res.data);
+	// 	})
+	// }
+	
+	// useEffect(()=>{
+	// 	dbtest();
+	// }, [])	
 
 	const fetchFn = async (type, data) => {
 		let res;
@@ -46,15 +57,11 @@ function Context({ children }) {
 				res = res.data;
 				dispatch({type, d: res});
 		}
-		console.log(res);
 	}
 
 	useEffect(()=>{
-		fetchFn();
-	}, [page]);
-
-	useEffect(()=>{
 		fetchFn("more", "");
+		console.log(page);
 	}, [page]);
 
 	return (
