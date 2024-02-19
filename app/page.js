@@ -3,10 +3,12 @@ import styles from "./page.module.scss"
 import { useContext, useEffect, useState } from 'react'
 import { myContext } from './components/Context'
 import { useRouter } from 'next/navigation'
+import Pop from "./components/Pop"
 
 export default function Home() {
-  const {data, fetchFn, setSrchInp} = useContext(myContext);
+  const {data, fetchFn, setSrchInp, popSt, setPopSt, pData, setPData} = useContext(myContext);
   const [test, setTest] = useState([]);
+  const [dItem, setDItem] = useState([]);
 
   let {page, setPage} = useContext(myContext);
   const navi = useRouter();
@@ -39,21 +41,27 @@ export default function Home() {
   return (
     <section className={styles.mainSec}>
       <form className={styles.searchBox} onSubmit={(e)=>{searching(e)}}>
-        <input onChange={(e)=>{setSrchInp(e.target.value)}} name="searchV"/>
+        <input className={styles.searchInp} onChange={(e)=>{setSrchInp(e.target.value)}} name="searchV"/>
+        <button className={styles.findBttn}>찾기</button>
       </form>
       <ul className={styles.list}>
         {
         data.map((item) => (
           <li className={styles.books}>
             <figure onClick={()=>{
-              navi.push(`/pages/detail?key=${item.isbn}`);
-            }} className={styles.bPoster}><img src={item.image}/></figure>
+              setPopSt("active");
+              setPData(item);
+              // navi.push(`/pages/detail?key=${item.isbn}`);
+            }} className={styles.bPoster}>
+              <img src={item.image}/>
+            </figure>
             <p className={styles.bTitle}>{item.title}</p>
           </li>
         ))
         }
-        <button onClick={()=>{fetchFn("more", setPage(++page)); console.log(page);}}>더보기</button>
       </ul>
+      <button className={styles.moreBttn} onClick={()=>{fetchFn("more", setPage(++page)); console.log(page);}}>더보기</button>
+      <Pop/>
     </section>
   )
 }

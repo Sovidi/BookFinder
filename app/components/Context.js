@@ -15,8 +15,10 @@ const insert = (state, action) => {
 function Context({ children }) {
 	const [data, dispatch] = useReducer(insert, []);
 	const [dData, setDData] = useState([]);
+	const [pData, setPData] = useState([]);
 	const [page, setPage] = useState(1);
 	const [srchInp, setSrchInp] = useState("");
+	const [popSt, setPopSt] = useState("");
 
 	// const dbtest = async () => {
 	// 	axios.get(`/api/test`)
@@ -65,7 +67,7 @@ function Context({ children }) {
 	}, [page]);
 
 	return (
-		<myContext.Provider value={{ data, fetchFn, dData, page, setPage, setSrchInp }}>
+		<myContext.Provider value={{ data, fetchFn, dData, page, setPage, setSrchInp, popSt, setPopSt, pData, setPData }}>
 			{children}
 		</myContext.Provider>
 	)
