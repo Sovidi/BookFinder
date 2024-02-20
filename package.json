@@ -1,5 +1,5 @@
 {
-  "homepage": "https://sovidi.github.io/BookFinder",
+  "homepage": "https://sovidi.github.io/BookFinder/",
   "name": "book",
   "version": "0.1.0",
   "private": true,
@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "deploy": "gh-pages -d .next"
+
   },
   "dependencies": {
     "axios": "^1.6.2",
