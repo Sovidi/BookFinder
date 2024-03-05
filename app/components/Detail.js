@@ -3,7 +3,7 @@ import { useSearchParams } from 'next/navigation'
 import Router, { useRouter } from 'next/navigation'
 import React, { useContext, useEffect } from 'react'
 import { myContext } from './Context'
-import styles from "../css/detail.module.scss"
+import styles from "../scss/detail.module.scss"
 
 function Detail() {
     const {fetchFn, dData} = useContext(myContext);

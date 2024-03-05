@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import styles from "../page.module.scss"
+import styles from "../scss/pop.module.scss"
 import { myContext } from './Context'
 
 function Pop() {
